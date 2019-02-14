@@ -1,7 +1,7 @@
 # android_cpp_multithread
 android_cpp_multithread: android create and build a cpp multiple threads, and run on your cellphone
 
-# to setup the cross-compile environment 
+## to setup the cross-compile environment 
 
 one need install android ndk tools from : https://developer.android.com/ndk/downloads/?hl=zh-cn
 then set up the cc toolchain, following following steps:
@@ -24,7 +24,7 @@ then set up the cc toolchain, following following steps:
 ```
 
 
-# to run 
+## to run 
 
 on windows
 
