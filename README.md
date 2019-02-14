@@ -39,4 +39,27 @@ on windows
 
 
 
+## console output
+```
+PRO7S:/data/t $ ls
+1.txt a.out run_on_phone.sh
+PRO7S:/data/t $ sh run_on_phone.sh
+WARNING: linker: /data/t/a.out: unsupported flags DT_FLAGS_1=0x8000000
+- cnt_threads : 4
+- id_td: 0
+
+--------------------
+- id_td: 1
+
+--------------------
+- id_td: 2
+
+--------------------
+- id_td: 3
+
+--------------------
+10.1
+99990.1
+PRO7S:/data/t $
+```
 
