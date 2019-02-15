@@ -49,7 +49,7 @@ void exec_e(float &e)
 }
 
 
-void exec_multi_threads_on_data(vector<float>& arr_src, const int& N, const int& td_num, void (*cb)(float &e))
+void exec_multi_threads_on_data(vector<float>& arr_src, const int& N, const int& td_num, void (*exec_e_)(float &e))
 {
 
 #define FLAG_USE_MULTIPLE_THREAD_ 1 
@@ -96,7 +96,7 @@ void exec_multi_threads_on_data(vector<float>& arr_src, const int& N, const int&
 
 
 		arr_pair_i_td[id_td].first = id_td;
-		arr_pair_i_td[id_td].second = thread([&cb](int id_td, vector<float>& arr_src, pair<int, int> pair_i_i) {
+		arr_pair_i_td[id_td].second = thread([&exec_e_](int id_td, vector<float>& arr_src, pair<int, int> pair_i_i) {
 
 #if 1
 				float sleep_time_seconds = id_td * 0.02f;
@@ -108,10 +108,9 @@ void exec_multi_threads_on_data(vector<float>& arr_src, const int& N, const int&
 
 				for (auto i = pair_i_i.first; i < pair_i_i.second; i++)
 				{
-				//cout << arr_src[i] << " ";
-				cb(arr_src[i]);
+					exec_e_(arr_src[i]);
 				}
-				cout << endl << "--------------------" << endl;
+				//cout << endl << "--------------------" << endl;
 
 				},
 				id_td, std::ref(arr_src), pair_i_i
@@ -153,8 +152,8 @@ void exec_multi_threads_on_data(vector<float>& arr_src, const int& N, const int&
 int main() {
 
 #if 1 
-	const int N = (const int)(1e4 + 0);
-	const int td_num = 4; 
+	const int N = (const int)(1e6 + 0);
+	const int td_num = 7; 
 
 
 	vector<float> arr_src{};
@@ -167,10 +166,12 @@ int main() {
 
 	exec_multi_threads_on_data(arr_src, N, td_num, exec_e);
 
+	cout << endl; 
 	cout << arr_src[1] << endl; 
 	cout << arr_src[N - 1] << endl; 
 
 	arr_src.clear(); 
+	cout << "- END" << endl; 
 #endif 
 
 }
