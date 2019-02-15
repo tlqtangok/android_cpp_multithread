@@ -1,3 +1,5 @@
-# adb push run_on_phone.sh /data/t
-chmod 0777  a.out
-./a.out
+chmod 0777  /data/t/a.out
+export PATH=/data/t:$PATH
+a.out
+
+
