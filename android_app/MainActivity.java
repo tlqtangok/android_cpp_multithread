@@ -22,7 +22,7 @@ import java.io.InputStreamReader;
 
 
 public class MainActivity extends AppCompatActivity {
-    Button button;
+    Button id_b0;
     TextView id_t0;
     int cnt = 0;
 
@@ -33,11 +33,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 // android:id="@+id/id_t0"
-        button = (Button) findViewById(R.id.id_b0);
+        id_b0 = (Button) findViewById(R.id.id_b0);
         id_t0 = (TextView) findViewById(R.id.id_t0);
 
+        id_b0.setText(cnt%2 == 0? "run shell script": "back");
 
-        button.setOnClickListener(new OnClickListener() {
+
+        id_b0.setOnClickListener(new OnClickListener() {
             @SuppressLint("SdCardPath")
             @Override
             public void onClick(View arg0) {
@@ -45,15 +47,17 @@ public class MainActivity extends AppCompatActivity {
                 String listOfFiles = "";
                 listOfFiles = "go start";
                 id_t0.setText(listOfFiles);
-                listOfFiles = "";
+                //listOfFiles = "";
 
 
                 if (1==1)
                 {
 
-                    listOfFiles = runAsRoot();
+                    //listOfFiles = runAsRoot();
 
-                    id_t0.setText(cnt++%2==0? listOfFiles:"hello world");
+                    id_t0.setText(cnt%2 == 0? runAsRoot():"hello world");
+                    cnt++;
+                    id_b0.setText(cnt%2 == 0? "run shell script": "back");
 
                 }
 
@@ -99,4 +103,3 @@ public class MainActivity extends AppCompatActivity {
     }
 
 }
-
